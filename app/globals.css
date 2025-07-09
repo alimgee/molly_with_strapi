@@ -1,0 +1,512 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;400&display=swap');
+body{
+    position: relative;
+    background-color: blanchedalmond!important;
+    font-family: 'Indie Flower', cursive;
+}
+
+.navbar {
+    background-color: #b1225a;
+    color: blanchedalmond!important;
+
+}
+.nav-link{
+    color: blanchedalmond!important;
+    border-radius: .5rem;
+    
+}
+.nav-link:hover{
+  color: #b1225a!important;
+  background-color: black;
+  font-weight: bolder;
+  font-size: 1.1rem;
+
+}
+.navbar-brand{
+    color: blanchedalmond!important;
+}
+.navbar-text{
+  color: blanchedalmond!important;
+  font-size: larger!important;
+
+}
+.footer {
+    background-color: #b1225a;
+    color: blanchedalmond;
+    font-weight: 100;
+    padding: 1rem 2rem 1rem 2rem;
+    text-align: center;
+    
+}
+.footer-text{
+  color: blanchedalmond;
+  font-size: .7rem;
+}
+.jumbotron{
+  background-color: #000;
+  text-align: center;
+  color: blanchedalmond!important;
+  height: 22rem!important;
+  background-image: url("/assets/img/molly-intro-small.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.content{
+  margin-top: 7rem;
+  color: blanchedalmond!important;
+}
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Indie Flower', cursive;
+  color: #b1225a!important;
+  font-weight: bold;
+
+}
+.first-character {
+  color: #034a96;
+  float: left;
+  font-family: Georgia;
+  font-size: 3rem;
+  line-height: 2rem;
+  padding-top: .2rem;
+  padding-right: .3rem;
+  padding-left: .1rem;
+}
+p{
+  font-family: 'Roboto Mono', monospace;  
+  letter-spacing:normal;
+  color: #034a96;
+  
+}
+.display-4{
+  color: blanchedalmond!important;
+}
+.btn{
+  color: blanchedalmond;
+  background-color: #b1225a!important;
+  font-weight: bold;
+  border-color: #b1225a;
+  border-radius: .75rem;
+}
+.btn:hover{
+  color: #b1225a;
+  background-color: black;
+  font-weight: bolder;
+  font-size: 1.1rem;
+}
+
+/** overwriting built in reactstrap button automatically added to code */
+
+
+.btn-secondary{
+  color: blanchedalmond;
+  background-color: #b1225a!important;
+  font-weight: bold;
+  border-color: #b1225a;
+  border-radius: .75rem;
+}
+.btn-secondary:hover{
+  color: blanchedalmond;
+  background-color: black;
+  font-weight: bolder;
+  font-size: 1.1rem;
+}
+blockquote{
+  color: #b1225a;
+  font-weight: 900;
+  font-family: 'Indie Flower', cursive;
+  font-size: 2rem;
+  text-align: center;
+}
+.card {
+    background-color: blanchedalmond!important;
+    margin-bottom: 2rem;
+    border-radius: .75rem!important;
+    -webkit-box-shadow: -.8rem -.8rem 1rem 0 rgba(140, 140, 140, 0.1), 10px 10px 15px 0 rgb(40, 40, 40);
+    box-shadow: -.8rem -.8rem 1rem 0  rgba(140, 140, 140, 0.1), 10px 10px 15px 0 rgb(40, 40, 40);
+    border: none;
+    background-clip: border-box;
+    font-size: 1.2rem;
+    padding: 1rem;
+}
+
+.twitter-embed {
+  /*background-color: #fff!important;*/
+  background-color: blanchedalmond!important;
+  margin-bottom: 2rem;
+  border-radius: .75rem!important;
+  -webkit-box-shadow: -.8rem -.8rem 1rem 0 rgba(140, 140, 140, 0.1), 10px 10px 15px 0 rgb(40, 40, 40);
+  box-shadow: -.8rem -.8rem 1rem 0  rgba(140, 140, 140, 0.1), 10px 10px 15px 0 rgb(40, 40, 40);
+  border: none;
+  background-clip: border-box;
+  font-size: 1.2rem;
+  padding: 1rem;;
+}
+.social{
+  display: inline-block;
+  padding: .5rem;
+  text-align: center;
+}
+.social h2{
+  color: blanchedalmond;
+}
+a>i.fa{
+  color: blanchedalmond;
+  text-decoration: none;
+}
+.card-body{
+  background-color: blanchedalmond;
+}
+.card-header{
+  border-bottom: none;
+  background-color: blanchedalmond;
+}
+.card-img{
+    padding-right: .4rem!important;
+    padding-left: .4rem!important;
+}
+.news-header{
+  font-family: 'Roboto Mono', monospace;
+  color: #b1225a;
+}
+.card-text{
+  color: #034a96;
+  font-family: 'Roboto Mono', monospace;
+  font-size: .75rem;
+}
+.card-img{
+  width: 90%;
+  margin: 0 auto;
+  
+}
+ul{
+  font-size: 1rem;
+  font-family: 'Roboto Mono', monospace;
+  color: #034a96;
+}
+.lead{
+  color: blanchedalmond;
+  font-weight: bold;
+  letter-spacing: .1rem;
+}
+
+
+.story-img{
+  height: auto;
+  width:90%;
+  background-color: #323232;
+  margin-bottom: 2rem;
+  border-radius: .75rem;
+  -webkit-box-shadow: -.8rem -.8rem 1rem 0 rgba(140, 140, 140, 0.1), 10px 10px 15px 0 rgb(40, 40, 40);
+  box-shadow: -.8rem -.8rem 1rem 0  rgba(140, 140, 140, 0.1), 10px 10px 15px 0 rgb(40, 40, 40);
+  border: none;
+  background-clip: border-box;
+  font-size: 1.2rem;
+  
+}
+.rounded{
+  border-radius: .75rem!important;
+}
+
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+/* scroll button */
+#myBtn {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 1.5rem; /* Place the button at the bottom of the page */
+  right: 1.5rem; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color:gray; /* Set a background color */
+  opacity: .8;
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: .5rem; /* Some padding */
+  border-radius: .75rem; /* Rounded corners */
+  font-size: 1.4rem; /* Increase font size */
+}
+
+#myBtn:hover {
+  background-color: #555; /* Add a dark-grey background on hover */
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+/* animate dropdown menu*/
+
+.animate {   
+  transition-timing-function: ease-in-out;   
+}
+
+div.signs>p::first-letter{
+  text-transform: uppercase; 
+  font-size: 1rem; 
+  letter-spacing:.2rem;
+  color: #b1225a;
+}
+.small::first-letter{
+  font-size: small;
+  letter-spacing: normal;
+}
+p {
+  font-size: 1rem;
+}
+.news-header{
+  font-size: 1rem;
+}
+.news-content{
+  font-size: .75rem;
+}
+
+.fa-star-o, .fa-tree, .fa-bell-o{
+  color: gold;
+}
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  .content{
+      margin-top: 2rem;
+  }
+  .jumbotron{
+
+      background-position: right;
+      text-align: left;
+      
+  }
+  .story-img{
+    width:100%;
+  }
+  
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1026px) and (max-width: 1280px) {
+  
+  .content{
+      margin-top: 2rem;
+  }
+  .jumbotron{
+
+      background-position: right;
+      text-align: left;
+  }
+  .story-img{
+    width:100%;
+  }
+  
+  
+}
+
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  
+  .content{
+      margin-top: 3rem;
+  }
+  .jumbotron{
+    height: 22rem!important;
+    background-position: right center;
+    text-align: left;
+  }
+  .story-img{
+    width:100%;
+  }
+    
+}
+  /* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 1024px) and (max-width: 1025px) {
+  
+  .content{
+      margin-top: 3rem;
+  }
+  .jumbotron{
+
+      background-position: right center;
+      text-align: left;
+  }
+  .story-img{
+    width:100%;
+  }
+    
+}
+
+/* 
+  ##Device = galaxay fold landscape
+  ##Screen = B/w 653
+*/
+
+@media (min-width: 652px) and (max-width: 655px) {
+  
+  .content{
+      margin-top: 5rem!important;
+  }
+  .jumbotron{
+    height: 22rem!important;
+    background-position: center center!important;
+  }
+  
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+  
+  .content{
+      margin-top: 5rem!important;
+  }
+  .jumbotron{
+    height: 22rem!important;
+    background-position: center center!important;
+  }
+  
+}
+
+  /* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 360px to 479px
+*/
+
+@media (min-width: 411px) and (max-width: 480px) {
+  
+  .content{
+      margin-top: 6rem!important;
+  }
+  .jumbotron{
+    height: 22rem!important;
+  }
+  
+}
+  /* 
+  ##Device = iphone x
+  ##Screen = B/w 360px to 479px
+*/
+
+@media (min-width: 375px) and (max-width: 410px) {
+  
+  .content{
+      margin-top: 5.8rem!important;
+  }
+  .jumbotron{
+    height: 21rem!important;
+  }
+  
+}
+
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 360px to 479px
+*/
+
+@media (min-width: 360px) and (max-width: 374px) {
+  
+  .content{
+      margin-top: 6rem!important;
+  }
+  .jumbotron{
+    height: 21rem!important;
+  }
+  
+}
+
+  /* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 360px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 359px) {  
+  .content{
+      margin-top: 5.5rem!important;
+  }
+  .jumbotron{
+      background-position: center center;
+  }
+  
+}
+
+    /* 
+  ##Device = very small screens
+  ##Screen = B/w 240px to 319px
+*/
+
+@media (min-width: 240px) and (max-width: 319px) { 
+  .content{
+      margin-top: 4rem;
+      
+  }
+  .jumbotron{
+      background-position: center center;
+      height: 26rem!important;
+  }
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Button overrides for white text */
+.btn {
+  --bs-btn-color: white !important;
+  --bs-btn-hover-color: #b1225a !important;
+  color: white !important;
+  background-color: #b1225a !important;
+  font-weight: bold;
+  border-color: #b1225a !important;
+  border-radius: .75rem;
+}
+
+.btn:hover {
+  color: #b1225a !important;
+  background-color: black !important;
+  font-weight: bolder;
+  font-size: 1.1rem;
+}
+
+.btn-secondary {
+  --bs-btn-color: white !important;
+  --bs-btn-hover-color: #b1225a !important;
+  color: white !important;
+  background-color: #b1225a !important;
+  font-weight: bold;
+  border-color: #b1225a !important;
+  border-radius: .75rem;
+}
+
+.btn-secondary:hover {
+  color: #b1225a !important;
+  background-color: black !important;
+  font-weight: bolder;
+  font-size: 1.1rem;
+}
