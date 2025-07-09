@@ -4,16 +4,15 @@ const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'
 
 export interface StrapiArticle {
   id: number;
-  attributes: {
-    title: string;
-    content: string;
-    externalLink?: string;
-    publicationDate: string;
-    provider: string;
-    createdAt: string;
-    updatedAt: string;
-    publishedAt: string;
-  };
+  documentId: string;
+  title: string;
+  content: any; // Rich text content (array format)
+  externalLink?: string;
+  publicationDate: string;
+  provider: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
 }
 
 export interface Article {
@@ -27,13 +26,28 @@ export interface Article {
 
 // Transform Strapi article format to our component format
 export function transformStrapiArticle(strapiArticle: StrapiArticle): Article {
+  // Convert rich text content to plain text
+  let contentText = '';
+  if (Array.isArray(strapiArticle.content)) {
+    contentText = strapiArticle.content
+      .map(block => {
+        if (block.type === 'paragraph' && Array.isArray(block.children)) {
+          return block.children.map(child => child.text || '').join('');
+        }
+        return '';
+      })
+      .join(' ');
+  } else if (typeof strapiArticle.content === 'string') {
+    contentText = strapiArticle.content;
+  }
+  
   return {
     id: strapiArticle.id.toString(),
-    name: strapiArticle.attributes.title,
-    content: strapiArticle.attributes.content,
-    link: strapiArticle.attributes.externalLink || '#',
-    date: strapiArticle.attributes.publicationDate,
-    provider: strapiArticle.attributes.provider,
+    name: strapiArticle.title,
+    content: contentText,
+    link: strapiArticle.externalLink || '#',
+    date: strapiArticle.publicationDate,
+    provider: strapiArticle.provider,
   };
 }
 
