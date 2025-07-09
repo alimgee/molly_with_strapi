@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Articles } from '@/app/news/data';
+import { fetchArticles } from '@/lib/strapi';
 import Intro from '@/app/home/Intro';
 import { Items } from '@/app/news/Articles';
 import { Container, Row, Col } from 'reactstrap';
@@ -9,8 +9,8 @@ export const metadata: Metadata = {
   description: "Latest news and events related to childhood cancer awareness and support for families affected by childhood cancer.",
 };
 
-export default function NewsPage() {
-  const articles = Articles;
+export default async function NewsPage() {
+  const articles = await fetchArticles();
 
   return (
     <main>

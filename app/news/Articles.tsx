@@ -3,12 +3,17 @@
 import React from "react";
 import Script from 'next/script';
 import { Card, CardBody } from 'reactstrap';
+import { Article } from '@/lib/strapi';
 
-export const Items = ({ articles }) => {
+interface ItemsProps {
+    articles: Article[];
+}
+
+export const Items: React.FC<ItemsProps> = ({ articles }) => {
     return (
         <div>
-            {articles.map((data, key) => (
-                <Card key={key} className="mb-3">
+            {articles.map((data) => (
+                <Card key={data.id} className="mb-3">
                     <CardBody>
                         <div>
                             <div className="card-text">
