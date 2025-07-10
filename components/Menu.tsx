@@ -1,68 +1,48 @@
-
-'use client';
-
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  NavbarText
-} from 'reactstrap';
+import { fetchNavigationItems, NavigationItem } from '../lib/strapi';
 
-const Menu = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggle = () => setIsOpen(!isOpen);
+export default async function Menu() {
+  const navigationItems = await fetchNavigationItems();
 
   return (
-    <div>
-      <Navbar light expand="md" className="justify-content-between">
-        <NavbarBrand href="/">MollyRose.ie</NavbarBrand>
-        <NavbarText className="d-none d-lg-block">Lets talk about Childhood Cancer</NavbarText>
-        <NavbarToggler onClick={toggle} />
-
-        <Collapse isOpen={isOpen} navbar className="animate">
-          <Nav className="ms-auto" navbar>
-            <NavItem>
-              <Link href="/" passHref legacyBehavior>
-                <NavLink title="Go to landing page of site">Home</NavLink>
-              </Link>
-            </NavItem>
-            <NavItem>
-              <Link href="/story" passHref legacyBehavior>
-                <NavLink title="Find out more about Molly Rose">Mollys Story</NavLink>
-              </Link>
-            </NavItem>
-            <NavItem>
-              <Link href="/childhoodcancer" passHref legacyBehavior>
-                <NavLink title="Find out more information about Childhood Cancer">Cancer</NavLink>
-              </Link>
-            </NavItem>
-            <NavItem>
-              <Link href="/helpout" passHref legacyBehavior>
-                <NavLink title="Ways you can help out">Helping Out</NavLink>
-              </Link>
-            </NavItem>
-            <NavItem>
-              <Link href="/news" passHref legacyBehavior>
-                <NavLink title="Find out current news or events relating to childhood cancer">News</NavLink>
-              </Link>
-            </NavItem>
-            <NavItem>
-              <Link href="/about" passHref legacyBehavior>
-                <NavLink title="Some more information about us">About</NavLink>
-              </Link>
-            </NavItem>
-          </Nav>
-        </Collapse>
-      </Navbar>
-    </div>
+    <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div className="container-fluid">
+        <Link href="/" className="navbar-brand">
+          MollyRose.ie
+        </Link>
+        <span className="d-none d-lg-block navbar-text">
+          Lets talk about Childhood Cancer
+        </span>
+        
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ms-auto">
+            {navigationItems.map((item: NavigationItem) => (
+              <li key={item.id} className="nav-item">
+                <Link 
+                  className="nav-link" 
+                  href={item.url}
+                  title={item.title || item.label}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </nav>
   );
-};
-
-export default Menu;
+}

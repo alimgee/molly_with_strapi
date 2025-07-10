@@ -1,29 +1,34 @@
-
 import React from 'react';
+import { fetchFooterContent, FooterContent } from '../lib/strapi';
 
-const Footer = () => {
-    return (
-        <footer className="bg-gray-800 text-white py-8">
-            <div className="container mx-auto px-4">
-                <div className="flex justify-between items-center">
-                    <div className="social">
-                        <h2 className="text-lg font-semibold">Contact Us:</h2>
-                        <div className="flex space-x-4 mt-2">
-                            <a title="Send an email to us" href="mailto:mollyrosefoundation@gmail.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
-                                <i className="fa fa-envelope-o fa-2x"></i>
-                            </a>
-                            <a title="Go to our twitter page" href="https://twitter.com/mollyrosecancer" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
-                                <i className="fa fa-twitter fa-2x"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <p className="text-gray-500 text-sm">
-                        Designed and Developed by Alan Mc Gee <br /> &copy;&nbsp;2020
-                    </p>
-                </div>
+export default async function Footer() {
+  const footerSections = await fetchFooterContent();
+
+  return (
+    <footer className="text-white py-4 mt-5 footer-molly">
+      <div className="container">
+        <div className="row">
+          {footerSections.map((section: FooterContent) => (
+            <div key={section.id} className="col-md-6 col-lg-4 mb-4">
+              <h5 className="text-white">{section.sectionTitle}</h5>
+              <div 
+                dangerouslySetInnerHTML={{ __html: section.content }}
+                className="footer-content text-white"
+              />
             </div>
-        </footer>
-    );
-};
-
-export default Footer;
+          ))}
+        </div>
+        
+        <hr className="my-4 footer-hr" />
+          
+        <div className="row">
+          <div className="col-12 text-center">
+            <p className="mb-0 text-white">
+              © {new Date().getFullYear()} Molly Rose Foundation. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}

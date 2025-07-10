@@ -80,6 +80,167 @@ export async function fetchArticles(): Promise<Article[]> {
   }
 }
 
+// Navigation interfaces
+export interface StrapiNavigationItem {
+  id: number;
+  documentId: string;
+  label: string;
+  url: string;
+  title?: string;
+  order: number;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+}
+
+export interface NavigationItem {
+  id: string;
+  label: string;
+  url: string;
+  title?: string;
+  order: number;
+}
+
+// Footer interfaces
+export interface StrapiFooterContent {
+  id: number;
+  documentId: string;
+  sectionTitle: string;
+  content: any; // Rich text content
+  order: number;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+}
+
+export interface FooterContent {
+  id: string;
+  sectionTitle: string;
+  content: string;
+  order: number;
+}
+
+// Transform functions
+export function transformStrapiNavigationItem(strapiItem: StrapiNavigationItem): NavigationItem {
+  return {
+    id: strapiItem.id.toString(),
+    label: strapiItem.label,
+    url: strapiItem.url,
+    title: strapiItem.title,
+    order: strapiItem.order,
+  };
+}
+
+export function transformStrapiFooterContent(strapiContent: StrapiFooterContent): FooterContent {
+  // Convert rich text content to HTML string
+  let contentHtml = '';
+  if (Array.isArray(strapiContent.content)) {
+    contentHtml = strapiContent.content
+      .map(block => {
+        if (block.type === 'paragraph' && Array.isArray(block.children)) {
+          const text = block.children.map(child => child.text || '').join('');
+          return `<p>${text}</p>`;
+        }
+        return '';
+      })
+      .join('');
+  } else if (typeof strapiContent.content === 'string') {
+    contentHtml = strapiContent.content;
+  }
+  
+  return {
+    id: strapiContent.id.toString(),
+    sectionTitle: strapiContent.sectionTitle,
+    content: contentHtml,
+    order: strapiContent.order,
+  };
+}
+
+// Fetch navigation items from Strapi
+export async function fetchNavigationItems(): Promise<NavigationItem[]> {
+  try {
+    const response = await fetch(`${STRAPI_URL}/api/navigation-items?sort=order:asc`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      cache: 'no-store',
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch navigation items: ${response.status}`);
+    }
+
+    const data = await response.json();
+    
+    if (!data.data || !Array.isArray(data.data)) {
+      console.warn('No navigation items found or invalid response format');
+      return getFallbackNavigationItems();
+    }
+
+    return data.data.map(transformStrapiNavigationItem);
+  } catch (error) {
+    console.error('Error fetching navigation items from Strapi:', error);
+    return getFallbackNavigationItems();
+  }
+}
+
+// Fetch footer content from Strapi
+export async function fetchFooterContent(): Promise<FooterContent[]> {
+  try {
+    const response = await fetch(`${STRAPI_URL}/api/footer-contents?sort=order:asc`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      cache: 'no-store',
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch footer content: ${response.status}`);
+    }
+
+    const data = await response.json();
+    
+    if (!data.data || !Array.isArray(data.data)) {
+      console.warn('No footer content found or invalid response format');
+      return getFallbackFooterContent();
+    }
+
+    return data.data.map(transformStrapiFooterContent);
+  } catch (error) {
+    console.error('Error fetching footer content from Strapi:', error);
+    return getFallbackFooterContent();
+  }
+}
+
+// Fallback navigation items (your current menu)
+function getFallbackNavigationItems(): NavigationItem[] {
+  return [
+    { id: "1", label: "Home", url: "/", title: "Go to landing page of site", order: 1 },
+    { id: "2", label: "Mollys Story", url: "/story", title: "Find out more about Molly Rose", order: 2 },
+    { id: "3", label: "Cancer", url: "/childhoodcancer", title: "Find out more about Childhood Cancer", order: 3 },
+    { id: "4", label: "News", url: "/news", title: "The latest news for Molly Rose", order: 4 },
+    { id: "5", label: "Events", url: "/events", title: "Find out about upcoming events", order: 5 },
+    { id: "6", label: "Gallery", url: "/gallery", title: "Image gallery for Molly Rose", order: 6 },
+  ];
+}
+
+// Fallback footer content
+function getFallbackFooterContent(): FooterContent[] {
+  return [
+    {
+      id: "1",
+      sectionTitle: "About",
+      content: "<p>The Molly Rose Foundation supports families affected by childhood cancer.</p>",
+      order: 1
+    },
+    {
+      id: "2", 
+      sectionTitle: "Contact",
+      content: "<p>Get in touch with us for more information about our services.</p>",
+      order: 2
+    }
+  ];
+}
 // Fallback static data (your current data)
 function getFallbackArticles(): Article[] {
   return [
