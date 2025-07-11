@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hero2s",
+  "info": {
+    "singularName": "hero2",
+    "pluralName": "hero2s",
+    "displayName": "Hero2"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "buttonLink": {
+      "type": "string",
+      "required": true
+    },
+    "buttonText": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

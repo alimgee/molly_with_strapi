@@ -1,9 +1,28 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { fetchNavigationItems, NavigationItem } from '../lib/strapi';
 
-export default async function Menu() {
-  const navigationItems = await fetchNavigationItems();
+export default function Menu() {
+  const [navigationItems, setNavigationItems] = useState<NavigationItem[]>([]);
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const loadNavigationItems = async () => {
+      const items = await fetchNavigationItems();
+      setNavigationItems(items);
+    };
+    loadNavigationItems();
+  }, []);
+
+  const toggleNavbar = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const closeNavbar = () => {
+    setIsOpen(false);
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -16,18 +35,17 @@ export default async function Menu() {
         </span>
         
         <button
-          className="navbar-toggler"
+          className="navbar-toggler d-lg-none"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
+          onClick={toggleNavbar}
           aria-controls="navbarNav"
-          aria-expanded="false"
+          aria-expanded={isOpen}
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
         
-        <div className="collapse navbar-collapse" id="navbarNav">
+        <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`} id="navbarNav">
           <ul className="navbar-nav ms-auto">
             {navigationItems.map((item: NavigationItem) => (
               <li key={item.id} className="nav-item">
@@ -35,6 +53,7 @@ export default async function Menu() {
                   className="nav-link" 
                   href={item.url}
                   title={item.title || item.label}
+                  onClick={closeNavbar}
                 >
                   {item.label}
                 </Link>

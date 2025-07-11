@@ -120,6 +120,58 @@ export interface FooterContent {
   order: number;
 }
 
+// Hero interfaces
+export interface StrapiHero {
+  id: number;
+  documentId: string;
+  title: string;
+  subtitle: string;
+  buttonText: string;
+  buttonLink: string;
+  backgroundImage?: {
+    url: string;
+    alternativeText?: string;
+  };
+  heroImage?: {
+    url: string;
+    alternativeText?: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+}
+
+export interface Hero {
+  id: string;
+  title: string;
+  subtitle: string;
+  buttonText: string;
+  buttonLink: string;
+  backgroundImage?: {
+    url: string;
+    alt?: string;
+  };
+  heroImage?: {
+    url: string;
+    alt?: string;
+  };
+}
+
+// Quote interfaces
+export interface StrapiQuote {
+  id: number;
+  documentId: string;
+  text: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+}
+
+export interface Quote {
+  id: string;
+  text: string;
+}
+
 // Transform functions
 export function transformStrapiNavigationItem(strapiItem: StrapiNavigationItem): NavigationItem {
   return {
@@ -153,6 +205,31 @@ export function transformStrapiFooterContent(strapiContent: StrapiFooterContent)
     sectionTitle: strapiContent.sectionTitle,
     content: contentHtml,
     order: strapiContent.order,
+  };
+}
+
+export function transformStrapiHero(strapiHero: StrapiHero): Hero {
+  return {
+    id: strapiHero.id.toString(),
+    title: strapiHero.title,
+    subtitle: strapiHero.subtitle,
+    buttonText: strapiHero.buttonText,
+    buttonLink: strapiHero.buttonLink,
+    backgroundImage: strapiHero.backgroundImage ? {
+      url: `${STRAPI_URL}${strapiHero.backgroundImage.url}`,
+      alt: strapiHero.backgroundImage.alternativeText || '',
+    } : undefined,
+    heroImage: strapiHero.heroImage ? {
+      url: `${STRAPI_URL}${strapiHero.heroImage.url}`,
+      alt: strapiHero.heroImage.alternativeText || '',
+    } : undefined,
+  };
+}
+
+export function transformStrapiQuote(strapiQuote: StrapiQuote): Quote {
+  return {
+    id: strapiQuote.id.toString(),
+    text: strapiQuote.text,
   };
 }
 
@@ -212,6 +289,64 @@ export async function fetchFooterContent(): Promise<FooterContent[]> {
   }
 }
 
+// Fetch hero content from Strapi
+export async function fetchHeroContent(): Promise<Hero> {
+  try {
+    const response = await fetch(`${STRAPI_URL}/api/hero2s?sort=id:asc`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      cache: 'no-store',
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch hero content: ${response.status}`);
+    }
+
+    const data = await response.json();
+    
+    if (!data.data || !Array.isArray(data.data) || data.data.length === 0) {
+      console.warn('No hero content found');
+      return getFallbackHeroContent();
+    }
+
+    // Return the first hero record (since we only need one)
+    return transformStrapiHero(data.data[0]);
+  } catch (error) {
+    console.error('Error fetching hero content from Strapi:', error);
+    return getFallbackHeroContent();
+  }
+}
+
+// Fetch quote content from Strapi
+export async function fetchQuoteContent(): Promise<Quote> {
+  try {
+    const response = await fetch(`${STRAPI_URL}/api/quotes?sort=id:asc`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      cache: 'no-store',
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch quote content: ${response.status}`);
+    }
+
+    const data = await response.json();
+    
+    if (!data.data || !Array.isArray(data.data) || data.data.length === 0) {
+      console.warn('No quote content found');
+      return getFallbackQuoteContent();
+    }
+
+    // Return the first quote record
+    return transformStrapiQuote(data.data[0]);
+  } catch (error) {
+    console.error('Error fetching quote content from Strapi:', error);
+    return getFallbackQuoteContent();
+  }
+}
+
 // Fallback navigation items (your current menu)
 function getFallbackNavigationItems(): NavigationItem[] {
   return [
@@ -241,6 +376,30 @@ function getFallbackFooterContent(): FooterContent[] {
     }
   ];
 }
+
+// Fallback hero content
+function getFallbackHeroContent(): Hero {
+  return {
+    id: "1",
+    title: "Molly Rose",
+    subtitle: "Driving Awareness of Childhood Cancer",
+    buttonText: "Molly's Story",
+    buttonLink: "/story",
+    heroImage: {
+      url: "/assets/img/molly-intro.jpg",
+      alt: "Molly Rose"
+    }
+  };
+}
+
+// Fallback quote content
+function getFallbackQuoteContent(): Quote {
+  return {
+    id: "1",
+    text: "Wash off yesterday, and dress for today"
+  };
+}
+
 // Fallback static data (your current data)
 function getFallbackArticles(): Article[] {
   return [

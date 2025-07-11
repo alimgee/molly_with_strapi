@@ -1,21 +1,19 @@
 
 import React from 'react';
-import {
-  Container,
-  Row,
-  Col,
-} from 'reactstrap';
+import { fetchQuoteContent } from '../../lib/strapi';
 
-const Quote = () => {
-    return(
-        <section>
-            <Container>
-                <Row>
-                    <Col>
-                    <blockquote><span>" Wash off yesterday, and dress for today "</span></blockquote> 
-                    </Col>
-                </Row>
-            </Container>
+const Quote = async () => {
+    const quoteData = await fetchQuoteContent();
+    
+    return (
+        <section className="quote-section">
+            <div className="container">
+                <div className="quote-content">
+                    <blockquote>
+                        <span>{quoteData.text}</span>
+                    </blockquote>
+                </div>
+            </div>
         </section>
     );
 };

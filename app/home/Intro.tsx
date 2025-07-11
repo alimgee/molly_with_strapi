@@ -2,18 +2,20 @@
 import React from 'react';
 import { Container } from 'reactstrap';
 import Link from 'next/link';
+import { fetchHeroContent } from '../../lib/strapi';
 
-const Intro = () => {
+const Intro = async () => {
+    const heroContent = await fetchHeroContent();
+
     return (
-        <section style={{backgroundColor:"black"}}>
+        <section className="hero-section">
             <div className="jumbotron">
                 <Container>
-                    <h1 className="display-4">Molly Rose</h1>
+                    <h1 className="display-4">{heroContent.title}</h1>
                     <div className="content">
-                        <p className="lead">Driving Awareness of Childhood Cancer
-                        </p>
-                        <Link href="/story" passHref legacyBehavior>
-                            <a title="Read about Mollys Story" className="btn" style={{textAlign: "left"}} role="button">Mollys Story</a>
+                        <p className="lead">{heroContent.subtitle}</p>
+                        <Link href={heroContent.buttonLink} className="hero-btn">
+                            {heroContent.buttonText}
                         </Link>
                     </div>
                 </Container>

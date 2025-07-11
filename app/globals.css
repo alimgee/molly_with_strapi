@@ -20,40 +20,21 @@ body {
   padding-top: 70px !important;
 }
 
-/* Navbar styles */
+/* Navbar base styles */
 .navbar {
   background-color: #b1225a !important;
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  width: 100% !important;
-  z-index: 1030 !important;
-  font-family: 'Indie Flower', cursive !important;
   height: 70px !important;
-  display: flex !important;
-  align-items: center !important;
+  padding: 0 !important;
+  z-index: 1030 !important;
 }
 
+/* Container and basic navbar layout */
 .navbar .container-fluid {
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
   width: 100% !important;
   padding: 0 1rem !important;
-}
-
-.navbar .navbar-nav {
-  display: flex !important;
-  flex-direction: row !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  list-style: none !important;
-  margin-left: auto !important;
-}
-
-.navbar .navbar-nav.ms-auto {
-  margin-left: auto !important;
 }
 
 .navbar .navbar-brand {
@@ -73,6 +54,19 @@ body {
   padding: 0 !important;
 }
 
+.navbar .navbar-nav {
+  display: flex !important;
+  flex-direction: row !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+  margin-left: auto !important;
+}
+
+.navbar .navbar-nav.ms-auto {
+  margin-left: auto !important;
+}
+
 .navbar .nav-link {
   color: white !important;
   font-family: 'Indie Flower', cursive !important;
@@ -88,34 +82,329 @@ body {
   font-weight: bolder !important;
 }
 
-.navbar .navbar-nav {
-  display: flex !important;
-  flex-direction: row !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  list-style: none !important;
-}
-
 .navbar .nav-item {
   margin: 0 0.2rem !important;
 }
 
-/* Jumbotron */
+/* Mobile Navigation Styles */
+.navbar-toggler {
+  border: 2px solid rgba(255, 255, 255, 0.5) !important;
+  padding: 0.25rem 0.5rem !important;
+  background: rgba(177, 34, 90, 0.8) !important;
+  outline: none !important;
+  box-shadow: none !important;
+  margin-left: auto !important;
+  position: relative !important;
+  z-index: 1050 !important;
+  min-width: 40px !important;
+  min-height: 40px !important;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.navbar-toggler-icon {
+  background-image: none !important;
+  width: 1.5em !important;
+  height: 1.5em !important;
+  position: relative !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  background-color: #fff !important;
+}
+
+.navbar-toggler-icon,
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+  width: 100% !important;
+  height: 3px !important;
+  background-color: #fff !important;
+  border-radius: 2px !important;
+  transition: all 0.3s ease !important;
+  display: block !important;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+  content: '' !important;
+  position: absolute !important;
+  left: 0 !important;
+}
+
+.navbar-toggler-icon::before {
+  top: -8px !important;
+}
+
+.navbar-toggler-icon::after {
+  bottom: -8px !important;
+}
+
+.navbar-collapse {
+  flex-basis: 100% !important;
+  flex-grow: 1 !important;
+  align-items: center !important;
+}
+
+.collapse:not(.show) {
+  display: none !important;
+}
+
+.collapse.show {
+  display: block !important;
+}
+
+/* Desktop navigation - always visible */
+@media (min-width: 992px) {
+  .navbar-toggler {
+    display: none !important;
+  }
+  
+  .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto !important;
+  }
+  
+  .navbar-collapse.collapse {
+    display: flex !important;
+  }
+}
+
+/* Mobile navigation specific styles */
+@media (max-width: 991.98px) {
+  .navbar-toggler {
+    display: block !important;
+    border: 2px solid rgba(255, 255, 255, 0.5) !important;
+    background: rgba(177, 34, 90, 0.8) !important;
+    color: #fff !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .navbar-collapse {
+    background-color: #b1225a !important;
+    margin-top: 0 !important;
+    padding: 0 !important;
+    border-radius: 0 0 0.5rem 0.5rem !important;
+    width: 100% !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 1000 !important;
+    border: none !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  .navbar-collapse.show {
+    display: block !important;
+  }
+  
+  .navbar .navbar-nav {
+    flex-direction: column !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-left: 0 !important;
+  }
+  
+  .nav-item {
+    margin: 0 !important;
+    width: 100% !important;
+  }
+  
+  .navbar .nav-link {
+    padding: 1rem 1.5rem !important;
+    text-align: left !important;
+    border-radius: 0 !important;
+    color: #fff !important;
+    background: none !important;
+    border: none !important;
+    display: block !important;
+    width: 100% !important;
+  }
+  
+  .navbar .nav-link:hover,
+  .navbar .nav-link:focus,
+  .navbar .nav-link:active {
+    color: #fff !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    font-weight: normal !important;
+  }
+}
+
+/* Hero Section */
+.hero-section {
+  background-color: #000 !important;
+  color: blanchedalmond !important;
+  padding: 0 !important;
+  min-height: 400px !important;
+}
+
 .jumbotron {
-  background-color: #000;
-  text-align: center;
+  background-color: #000 !important;
+  text-align: center !important;
   color: blanchedalmond !important;
   height: 22rem !important;
-  background-image: url("/assets/img/molly-intro-small.jpg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  position: relative;
+  background-image: url("/assets/img/molly-intro-small.jpg") !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  background-position: center !important;
+  margin-bottom: 0 !important;
+  border-radius: 0 !important;
+  padding: 2rem 0 !important;
 }
 
 .content {
-  margin-top: 7rem;
+  margin-top: 7rem !important;
   color: blanchedalmond !important;
+}
+
+.hero-image {
+  display: none !important; /* Hide separate hero image since it's in the background */
+}
+
+.hero-btn {
+  background-color: #b1225a !important;
+  border: none !important;
+  color: blanchedalmond !important;
+  font-family: 'Indie Flower', cursive !important;
+  font-size: 1.2rem !important;
+  font-weight: bold !important;
+  padding: 0.8rem 2rem !important;
+  border-radius: 0.75rem !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  margin-top: 1rem !important;
+  transition: all 0.3s ease !important;
+  text-align: left !important;
+}
+
+.hero-btn:hover {
+  background-color: black !important;
+  color: #b1225a !important;
+  text-decoration: none !important;
+  font-weight: bolder !important;
+  font-size: 1.1rem !important;
+}
+
+/* Desktop Responsive - 1281px and higher */
+@media (min-width: 1281px) {
+  .content {
+    margin-top: 2rem !important;
+  }
+  .jumbotron {
+    background-position: right !important;
+    text-align: left !important;
+  }
+}
+
+/* Laptops/Desktops - 1025px to 1280px */
+@media (min-width: 1026px) and (max-width: 1280px) {
+  .content {
+    margin-top: 2rem !important;
+  }
+  .jumbotron {
+    background-position: right !important;
+    text-align: left !important;
+  }
+}
+
+/* Tablets - 768px to 1024px */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .content {
+    margin-top: 3rem !important;
+  }
+  .jumbotron {
+    height: 22rem !important;
+    background-position: right center !important;
+    text-align: left !important;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1025px) {
+  .content {
+    margin-top: 3rem !important;
+  }
+  .jumbotron {
+    background-position: right center !important;
+    text-align: left !important;
+  }
+}
+
+/* Galaxy Fold Landscape - 652px to 655px */
+@media (min-width: 652px) and (max-width: 655px) {
+  .content {
+    margin-top: 5rem !important;
+  }
+  .jumbotron {
+    height: 22rem !important;
+    background-position: center center !important;
+  }
+}
+
+/* Low Resolution Tablets/Mobiles Landscape - 481px to 767px */
+@media (min-width: 481px) and (max-width: 767px) {
+  .content {
+    margin-top: 5rem !important;
+  }
+  .jumbotron {
+    height: 22rem !important;
+    background-position: center center !important;
+  }
+}
+
+/* Smartphones Portrait - 411px to 480px */
+@media (min-width: 411px) and (max-width: 480px) {
+  .content {
+    margin-top: 6rem !important;
+  }
+  .jumbotron {
+    height: 22rem !important;
+  }
+}
+
+/* Smartphones Portrait - 375px to 410px */
+@media (min-width: 375px) and (max-width: 410px) {
+  .content {
+    margin-top: 5.8rem !important;
+  }
+  .jumbotron {
+    height: 21rem !important;
+  }
+}
+
+/* Smartphones Portrait - 360px to 374px */
+@media (min-width: 360px) and (max-width: 374px) {
+  .content {
+    margin-top: 6rem !important;
+  }
+  .jumbotron {
+    height: 21rem !important;
+  }
+}
+
+/* Smartphones Portrait - 320px to 359px */
+@media (min-width: 320px) and (max-width: 359px) {
+  .content {
+    margin-top: 5.5rem !important;
+  }
+  .jumbotron {
+    background-position: center center !important;
+  }
+}
+
+/* Very Small Screens - 240px to 319px */
+@media (min-width: 240px) and (max-width: 319px) {
+  .content {
+    margin-top: 4rem !important;
+  }
+  .jumbotron {
+    background-position: center center !important;
+    height: 26rem !important;
+  }
 }
 
 /* Typography */
@@ -230,12 +519,25 @@ p {
 }
 
 /* Quote */
+.quote-section {
+  padding: 2rem 0;
+  background: transparent;
+}
+
+.quote-content {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 blockquote {
   color: #b1225a;
   font-weight: 900;
   font-family: 'Indie Flower', cursive;
   font-size: 2rem;
   text-align: center;
+  margin: 0;
+  padding: 1rem;
 }
 
 /* Footer */
