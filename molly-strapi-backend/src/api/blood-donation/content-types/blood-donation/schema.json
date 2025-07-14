@@ -1,0 +1,41 @@
+{
+  "kind": "singleType",
+  "collectionName": "homepage_banners",
+  "info": {
+    "singularName": "homepage-banner",
+    "pluralName": "homepage-banners",
+    "displayName": "Homepage Banner",
+    "description": "Configurable banner/message module for homepage - can display various call-to-action messages, announcements, or awareness content"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "Give blood, save a childs life"
+    },
+    "description": {
+      "type": "text",
+      "required": true,
+      "default": "Blood Donations are essential during the treatment of childhood cancer. During lockdown the Irish Blood transfusion board continue to need your help."
+    },
+    "linkText": {
+      "type": "string",
+      "required": false,
+      "default": "Find a Clinic"
+    },
+    "linkUrl": {
+      "type": "string",
+      "required": false,
+      "default": "https://www.giveblood.ie/Find-a-Clinic/Clinic-Finder/"
+    },
+    "isVisible": {
+      "type": "boolean",
+      "required": true,
+      "default": true
+    }
+  }
+}

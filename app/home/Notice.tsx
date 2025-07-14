@@ -1,35 +1,43 @@
 
 import React from 'react';
-import {
-    Container,
-    Row,
-    Col,
-    Card,
-    CardBody,
-} from 'reactstrap';
+import { fetchHomepageBanner, HomepageBanner } from '../../lib/strapi';
 
-const NoticeSection = () => {
+const NoticeSection = async () => {
+    const banner: HomepageBanner | null = await fetchHomepageBanner();
+    
+    // Don't render anything if banner is null (not visible or no data)
+    if (!banner) {
+        return null;
+    }
+
     return (
         <section>
-            <Container className="mb-2">
-                <Row>
-                    <Col>
-                        <Card>
-                            <CardBody>
+            <div className="mb-2 container">
+                <div className="row">
+                    <div className="col">
+                        <div className="card">
+                            <div className="card-body">
                                 <div className="card-text">
-                                    <h2>Give blood, save a childs life</h2>
-                                    <p>Blood Donations are essential during the treatment of childhood cancer. During lockdown the Irish Blood
-                                    transfusion board continue to need your help.
-                                   </p>
-                                    <p><i className="fa fa-tint mr-2" aria-hidden="true"></i>
-                                        <a href="https://www.giveblood.ie/Find-a-Clinic/Clinic-Finder/" target="_blank" rel="noopener noreferrer">Find a Clinic</a>
-                                    </p>
+                                    <h2>{banner.title}</h2>
+                                    <p>{banner.description}</p>
+                                    {banner.linkText && banner.linkUrl && (
+                                        <p>
+                                            <i className="fa fa-tint mr-2" aria-hidden="true"></i>
+                                            <a 
+                                                href={banner.linkUrl} 
+                                                target="_blank" 
+                                                rel="noopener noreferrer"
+                                            >
+                                                {banner.linkText}
+                                            </a>
+                                        </p>
+                                    )}
                                 </div>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                </Row>
-            </Container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     );
 };

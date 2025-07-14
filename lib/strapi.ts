@@ -172,6 +172,31 @@ export interface Quote {
   text: string;
 }
 
+// Homepage Banner interfaces
+export interface StrapiHomepageBanner {
+  id: number;
+  documentId: string;
+  name: string;
+  title: string;
+  description: string;
+  linkText?: string;
+  linkUrl?: string;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+}
+
+export interface HomepageBanner {
+  id: string;
+  name: string;
+  title: string;
+  description: string;
+  linkText?: string;
+  linkUrl?: string;
+  isActive: boolean;
+}
+
 // Transform functions
 export function transformStrapiNavigationItem(strapiItem: StrapiNavigationItem): NavigationItem {
   return {
@@ -230,6 +255,18 @@ export function transformStrapiQuote(strapiQuote: StrapiQuote): Quote {
   return {
     id: strapiQuote.id.toString(),
     text: strapiQuote.text,
+  };
+}
+
+export function transformStrapiHomepageBanner(strapiBanner: StrapiHomepageBanner): HomepageBanner {
+  return {
+    id: strapiBanner.id.toString(),
+    name: strapiBanner.name,
+    title: strapiBanner.title,
+    description: strapiBanner.description,
+    linkText: strapiBanner.linkText,
+    linkUrl: strapiBanner.linkUrl,
+    isActive: strapiBanner.isActive,
   };
 }
 
@@ -347,6 +384,36 @@ export async function fetchQuoteContent(): Promise<Quote> {
   }
 }
 
+// Fetch homepage banner from Strapi
+export async function fetchHomepageBanner(): Promise<HomepageBanner | null> {
+  try {
+    const response = await fetch(`${STRAPI_URL}/api/homepage-banners?filters[isActive][$eq]=true`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      cache: 'no-store',
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch homepage banner: ${response.status}`);
+    }
+
+    const data = await response.json();
+    
+    if (!data.data || !Array.isArray(data.data) || data.data.length === 0) {
+      console.warn('No active homepage banner found');
+      return null; // Return null when no active banners, don't show fallback
+    }
+
+    // Return the first active banner
+    return transformStrapiHomepageBanner(data.data[0]);
+  } catch (error) {
+    console.error('Error fetching homepage banner from Strapi:', error);
+    // Only show fallback when there's a connection error, not when no active banners
+    return getFallbackHomepageBanner();
+  }
+}
+
 // Fallback navigation items (your current menu)
 function getFallbackNavigationItems(): NavigationItem[] {
   return [
@@ -420,4 +487,17 @@ function getFallbackArticles(): Article[] {
       provider: "Health News"
     }
   ];
+}
+
+// Fallback homepage banner content
+function getFallbackHomepageBanner(): HomepageBanner {
+  return {
+    id: "1",
+    name: "Blood Donation Default",
+    title: "Give blood, save a childs life",
+    description: "Blood Donations are essential during the treatment of childhood cancer. During lockdown the Irish Blood transfusion board continue to need your help.",
+    linkText: "Find a Clinic",
+    linkUrl: "https://www.giveblood.ie/Find-a-Clinic/Clinic-Finder/",
+    isActive: true
+  };
 }
