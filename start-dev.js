@@ -26,6 +26,7 @@ function log(message, color = 'reset') {
 
 function findStrapiDirectory() {
   const possiblePaths = [
+    './molly-strapi-backend',
     '../molly_strapi_backend',
     './backend',
     './strapi',

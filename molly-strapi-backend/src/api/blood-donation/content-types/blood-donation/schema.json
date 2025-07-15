@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "blood_donations",
+  "info": {
+    "singularName": "blood-donation",
+    "pluralName": "blood-donations",
+    "displayName": "Blood Donation",
+    "description": "Blood donation information and campaigns"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "donationUrl": {
+      "type": "string"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

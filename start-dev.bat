@@ -7,7 +7,7 @@ echo 🚀 Starting Molly Rose Foundation Development Environment...
 echo =================================================
 
 REM Set up variables
-set STRAPI_DIR=..\molly_strapi_backend
+set STRAPI_DIR=.\molly-strapi-backend
 set STRAPI_FOUND=0
 
 REM Check if Strapi directory exists
@@ -17,7 +17,10 @@ if exist "%STRAPI_DIR%" (
     echo ⚠️  Strapi directory not found at %STRAPI_DIR%
     echo Looking for alternative Strapi locations...
     
-    if exist ".\backend" (
+    if exist "..\molly_strapi_backend" (
+        set STRAPI_DIR=..\molly_strapi_backend
+        set STRAPI_FOUND=1
+    ) else if exist ".\backend" (
         set STRAPI_DIR=.\backend
         set STRAPI_FOUND=1
     ) else if exist ".\strapi" (
@@ -29,6 +32,7 @@ if exist "%STRAPI_DIR%" (
     ) else (
         echo ❌ Could not find Strapi directory
         echo Please ensure your Strapi server is in one of these locations:
+        echo   - .\molly-strapi-backend
         echo   - ..\molly_strapi_backend
         echo   - .\backend
         echo   - .\strapi

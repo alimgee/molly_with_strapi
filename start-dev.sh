@@ -26,13 +26,15 @@ cleanup() {
 trap cleanup SIGINT SIGTERM
 
 # Check if Strapi directory exists (assuming it's in a sibling directory)
-STRAPI_DIR="../molly_strapi_backend"
+STRAPI_DIR="./molly-strapi-backend"
 if [ ! -d "$STRAPI_DIR" ]; then
     echo -e "${YELLOW}⚠️  Strapi directory not found at $STRAPI_DIR${NC}"
     echo -e "${BLUE}Looking for alternative Strapi locations...${NC}"
     
     # Check common alternative locations
-    if [ -d "./backend" ]; then
+    if [ -d "../molly_strapi_backend" ]; then
+        STRAPI_DIR="../molly_strapi_backend"
+    elif [ -d "./backend" ]; then
         STRAPI_DIR="./backend"
     elif [ -d "./strapi" ]; then
         STRAPI_DIR="./strapi"
@@ -41,6 +43,7 @@ if [ ! -d "$STRAPI_DIR" ]; then
     else
         echo -e "${RED}❌ Could not find Strapi directory${NC}"
         echo -e "${YELLOW}Please ensure your Strapi server is in one of these locations:${NC}"
+        echo "  - ./molly-strapi-backend"
         echo "  - ../molly_strapi_backend"
         echo "  - ./backend"
         echo "  - ./strapi"
