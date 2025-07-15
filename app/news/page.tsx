@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { fetchArticles } from '@/lib/strapi';
+import { fetchArticles } from '@/lib/strapi/content';
 import Intro from '@/app/home/Intro';
 import { Items } from '@/app/news/Articles';
 import { Container, Row, Col } from 'reactstrap';

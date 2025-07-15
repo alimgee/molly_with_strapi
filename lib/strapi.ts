@@ -501,3 +501,25 @@ function getFallbackHomepageBanner(): HomepageBanner {
     isActive: true
   };
 }
+
+// =============================================================================
+// 📝 MIGRATION NOTE: NEW ORGANIZED STRAPI STRUCTURE AVAILABLE
+// =============================================================================
+// 
+// A new organized Strapi API structure is available in ./strapi/ directory:
+// 
+// 📁 lib/strapi/
+// ├── config.ts        # Base configuration and utilities
+// ├── homepage.ts      # Homepage content (banners, heroes, quotes)
+// ├── layout.ts        # Navigation and layout content
+// ├── content.ts       # Articles and news content
+// ├── cancer-info.ts   # Childhood cancer specific content
+// └── index.ts         # Main export with grouped APIs
+//
+// New usage examples:
+// import { contentAPI } from '@/lib/strapi';
+// import { fetchArticles } from '@/lib/strapi/content';
+// 
+// This file remains for backwards compatibility.
+// See STRAPI_MIGRATION.md for full migration guide.
+// =============================================================================

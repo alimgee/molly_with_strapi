@@ -1,0 +1,98 @@
+{
+  "kind": "collectionType",
+  "collectionName": "treatment_information",
+  "info": {
+    "singularName": "treatment-information",
+    "pluralName": "treatment-information",
+    "displayName": "Treatment Information",
+    "description": "Medical treatment information and procedures for childhood cancer"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxLength": 255
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "treatmentType": {
+      "type": "enumeration",
+      "enum": [
+        "chemotherapy",
+        "radiation",
+        "surgery",
+        "immunotherapy",
+        "bone-marrow-transplant",
+        "clinical-trial",
+        "supportive-care",
+        "other"
+      ],
+      "required": true
+    },
+    "cancerTypes": {
+      "type": "json",
+      "description": "Array of cancer types this treatment applies to"
+    },
+    "ageGroup": {
+      "type": "enumeration",
+      "enum": [
+        "infant",
+        "toddler", 
+        "child",
+        "adolescent",
+        "all-ages"
+      ]
+    },
+    "sideEffects": {
+      "type": "richtext",
+      "description": "Common side effects and management strategies"
+    },
+    "duration": {
+      "type": "string",
+      "description": "Typical treatment duration"
+    },
+    "preparation": {
+      "type": "richtext",
+      "description": "How to prepare for this treatment"
+    },
+    "recovery": {
+      "type": "richtext",
+      "description": "Recovery process and timeline"
+    },
+    "resources": {
+      "type": "json",
+      "description": "Related resources, links, and documents"
+    },
+    "medicalDisclaimer": {
+      "type": "text",
+      "description": "Important medical disclaimer for this information"
+    },
+    "lastReviewed": {
+      "type": "date",
+      "description": "When this medical information was last reviewed"
+    },
+    "reviewedBy": {
+      "type": "string",
+      "description": "Medical professional who reviewed this content"
+    },
+    "isVisible": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

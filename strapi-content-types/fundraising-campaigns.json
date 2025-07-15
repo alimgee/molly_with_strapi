@@ -1,0 +1,124 @@
+{
+  "kind": "collectionType",
+  "collectionName": "fundraising_campaigns",
+  "info": {
+    "singularName": "fundraising-campaign",
+    "pluralName": "fundraising-campaigns",
+    "displayName": "Fundraising Campaigns",
+    "description": "Ongoing fundraising campaigns and donation drives"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "maxLength": 255
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "shortDescription": {
+      "type": "text",
+      "maxLength": 500,
+      "description": "Brief summary for cards and listings"
+    },
+    "campaignType": {
+      "type": "enumeration",
+      "enum": [
+        "general-donation",
+        "medical-equipment",
+        "research-funding",
+        "family-support",
+        "awareness-campaign",
+        "event-fundraiser",
+        "memorial-fund",
+        "other"
+      ],
+      "required": true
+    },
+    "goalAmount": {
+      "type": "decimal",
+      "description": "Target fundraising amount"
+    },
+    "currentAmount": {
+      "type": "decimal",
+      "default": 0,
+      "description": "Current amount raised"
+    },
+    "currency": {
+      "type": "string",
+      "default": "EUR",
+      "maxLength": 3
+    },
+    "startDate": {
+      "type": "date",
+      "required": true
+    },
+    "endDate": {
+      "type": "date",
+      "description": "Campaign end date (optional for ongoing campaigns)"
+    },
+    "isOngoing": {
+      "type": "boolean",
+      "default": false,
+      "description": "True for campaigns without an end date"
+    },
+    "donationUrl": {
+      "type": "string",
+      "description": "Direct link to donation page"
+    },
+    "imageUrl": {
+      "type": "string",
+      "description": "Campaign banner or featured image"
+    },
+    "gallery": {
+      "type": "json",
+      "description": "Array of additional images for the campaign"
+    },
+    "beneficiary": {
+      "type": "string",
+      "description": "Who or what this campaign benefits"
+    },
+    "impactStatement": {
+      "type": "text",
+      "description": "How donations will make a difference"
+    },
+    "updates": {
+      "type": "json",
+      "description": "Array of campaign updates and milestones"
+    },
+    "socialMediaLinks": {
+      "type": "json",
+      "description": "Social media campaign links"
+    },
+    "contactPerson": {
+      "type": "string",
+      "description": "Campaign organizer or contact person"
+    },
+    "contactEmail": {
+      "type": "email"
+    },
+    "taxDeductible": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether donations are tax-deductible"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

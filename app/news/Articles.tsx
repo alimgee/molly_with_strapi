@@ -3,7 +3,7 @@
 import React from "react";
 import Script from 'next/script';
 import { Card, CardBody } from 'reactstrap';
-import { Article } from '@/lib/strapi';
+import { Article } from '@/lib/strapi/content';
 
 interface ItemsProps {
     articles: Article[];
