@@ -1,0 +1,72 @@
+{
+  "kind": "collectionType",
+  "collectionName": "support_organizations",
+  "info": {
+    "singularName": "support-organization",
+    "pluralName": "support-organizations",
+    "displayName": "Support Organizations",
+    "description": "Organizations providing support for childhood cancer - charities, hospitals, support groups"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "maxLength": 255
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": ["charity", "hospital", "support_group", "research", "blood_donation", "financial_aid"],
+      "required": true
+    },
+    "website": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "address": {
+      "type": "text"
+    },
+    "logoUrl": {
+      "type": "string"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    },
+    "serviceAreas": {
+      "type": "json"
+    },
+    "servicesOffered": {
+      "type": "json"
+    },
+    "contactHours": {
+      "type": "string"
+    },
+    "socialMedia": {
+      "type": "json"
+    },
+    "establishedYear": {
+      "type": "integer"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    }
+  }
+}

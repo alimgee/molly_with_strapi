@@ -1,0 +1,130 @@
+{
+  "kind": "collectionType",
+  "collectionName": "testimonials",
+  "info": {
+    "singularName": "testimonial",
+    "pluralName": "testimonials",
+    "displayName": "Testimonials & Stories",
+    "description": "Patient, family, and supporter stories and testimonials"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxLength": 255
+    },
+    "story": {
+      "type": "richtext",
+      "required": true,
+      "description": "The full story or testimonial"
+    },
+    "excerpt": {
+      "type": "text",
+      "maxLength": 300,
+      "description": "Brief excerpt for cards and previews"
+    },
+    "storytellerName": {
+      "type": "string",
+      "required": true,
+      "description": "Name of the person sharing the story"
+    },
+    "storytellerRole": {
+      "type": "enumeration",
+      "enum": [
+        "patient",
+        "parent",
+        "sibling", 
+        "family-member",
+        "friend",
+        "caregiver",
+        "medical-professional",
+        "volunteer",
+        "supporter",
+        "survivor",
+        "other"
+      ]
+    },
+    "patientAge": {
+      "type": "string",
+      "description": "Age of patient (if applicable)"
+    },
+    "diagnosisYear": {
+      "type": "integer",
+      "description": "Year of diagnosis (if applicable)"
+    },
+    "cancerType": {
+      "type": "string",
+      "description": "Type of cancer (if applicable)"
+    },
+    "location": {
+      "type": "string",
+      "description": "City or region"
+    },
+    "photoUrl": {
+      "type": "string",
+      "description": "Photo of storyteller or family (with consent)"
+    },
+    "videoUrl": {
+      "type": "string",
+      "description": "Video testimonial link"
+    },
+    "audioUrl": {
+      "type": "string",
+      "description": "Audio testimonial link"
+    },
+    "consentGiven": {
+      "type": "boolean",
+      "default": false,
+      "required": true,
+      "description": "Consent to publish story given"
+    },
+    "consentDate": {
+      "type": "date",
+      "description": "Date consent was given"
+    },
+    "anonymized": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether names should be anonymized"
+    },
+    "foundation": {
+      "type": "enumeration",
+      "enum": [
+        "inspiring",
+        "hopeful",
+        "educational",
+        "awareness",
+        "gratitude",
+        "memorial",
+        "celebration",
+        "call-to-action"
+      ],
+      "description": "Type/tone of the story"
+    },
+    "tags": {
+      "type": "json",
+      "description": "Array of relevant tags for categorization"
+    },
+    "submissionDate": {
+      "type": "date",
+      "default": "2024-01-01"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    },
+    "isVisible": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

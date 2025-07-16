@@ -1,0 +1,84 @@
+{
+  "kind": "collectionType",
+  "collectionName": "awareness_campaigns",
+  "info": {
+    "singularName": "awareness-campaign",
+    "pluralName": "awareness-campaigns",
+    "displayName": "Awareness Campaigns",
+    "description": "Campaigns to raise awareness about childhood cancer"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxLength": 255
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "campaignType": {
+      "type": "enumeration",
+      "enum": ["awareness", "fundraising", "education", "support", "memorial"],
+      "required": true
+    },
+    "startDate": {
+      "type": "date",
+      "required": true
+    },
+    "endDate": {
+      "type": "date"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "targetAudience": {
+      "type": "enumeration",
+      "enum": ["general_public", "parents", "healthcare", "educators", "children", "families"]
+    },
+    "goal": {
+      "type": "text"
+    },
+    "callToAction": {
+      "type": "string",
+      "maxLength": 255
+    },
+    "actionLink": {
+      "type": "string"
+    },
+    "featuredImage": {
+      "type": "string"
+    },
+    "socialMediaKit": {
+      "type": "json"
+    },
+    "statistics": {
+      "type": "json"
+    },
+    "resources": {
+      "type": "json"
+    },
+    "partnerOrganizations": {
+      "type": "json"
+    },
+    "hashtags": {
+      "type": "json"
+    },
+    "impactMetrics": {
+      "type": "json"
+    },
+    "priority": {
+      "type": "integer",
+      "default": 0
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    }
+  }
+}
