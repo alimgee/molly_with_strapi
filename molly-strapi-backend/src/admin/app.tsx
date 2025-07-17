@@ -2,52 +2,81 @@ import type { StrapiApp } from '@strapi/strapi/admin';
 
 export default {
   config: {
-    // Customize the admin panel
+    // Minimal Molly Rose Foundation branding
     head: {
-      favicon: '/favicon.ico',
+      favicon: '/favicon.png',
+      title: 'Molly Rose Foundation CMS',
     },
     locales: ['en'],
-    // Add custom theme for Molly Rose Foundation
+    
+    // Basic theme with foundation colors only
     theme: {
-      // You can customize colors here if needed
-      light: {},
-      dark: {},
-    },
-    // Customize menu
-    menu: {
-      logo: '/favicon.ico',
-    },
-    // Custom translations for better UX
-    translations: {
-      en: {
-        'content-manager.containers.Home.introduction': 'Welcome to the Molly Rose Foundation Content Management System',
-        'content-manager.containers.Home.subtitle': 'Manage content for raising awareness about childhood cancer',
-        // Group content types with better names
-        'content-manager.models.cancer-information.name': 'Cancer Information',
-        'content-manager.models.treatment-information.name': 'Treatment Information', 
-        'content-manager.models.support-organization.name': 'Support Organizations',
-        'content-manager.models.testimonial.name': 'Testimonials',
-        'content-manager.models.awareness-campaign.name': 'Awareness Campaigns',
-        'content-manager.models.fundraising-campaign.name': 'Fundraising Campaigns',
-        'content-manager.models.volunteer-opportunity.name': 'Volunteer Opportunities',
-        'content-manager.models.event.name': 'Events',
-        'content-manager.models.article.name': 'News Articles',
+      light: {
+        colors: {
+          primary500: '#b1225a',
+          primary600: '#9f1f52',
+          primary700: '#8d1c48',
+        }
+      },
+      dark: {
+        colors: {
+          primary500: '#b1225a',
+          primary600: '#c92d63', 
+          primary700: '#d63d6f',
+        }
       },
     },
+    
+    // Disable potentially problematic features
+    tutorials: false,
+    notifications: {
+      releases: false,
+    },
   },
+  
   bootstrap(app: StrapiApp) {
-    console.log('Molly Rose Foundation Admin Panel initialized');
+    console.log('🌟 Molly Rose Foundation Admin Panel initialized');
     
-    // Custom styling or functionality can be added here
-    // For example, we could inject custom CSS or modify the admin interface
+    // Safe customizations only - no trial banner manipulation
+    const initSafeCustomizations = () => {
+      // Only run once
+      if (document.querySelector('#molly-safe-init')) return;
+      
+      // Mark as completed
+      const marker = document.createElement('meta');
+      marker.id = 'molly-safe-init';
+      document.head.appendChild(marker);
+      
+      // Update favicon
+      const link = document.createElement('link');
+      link.rel = 'icon';
+      link.type = 'image/png';
+      link.href = '/favicon.png';
+      document.head.appendChild(link);
+      
+      // Update page title
+      document.title = 'Molly Rose Foundation CMS';
+      
+      // Improve navigation text visibility in dark mode
+      const style = document.createElement('style');
+      style.id = 'molly-safe-theme';
+      style.textContent = `
+        /* Improve navigation text visibility */
+        nav *, aside *, [role="navigation"] * {
+          color: #ffffff !important;
+          background-color: rgba(0, 0, 0, 0.8) !important;
+          padding: 2px 4px !important;
+          border-radius: 3px !important;
+        }
+      `;
+      document.head.appendChild(style);
+    };
     
-    // Add custom favicon if needed
-    const favicon = document.querySelector('link[rel="icon"]') as HTMLLinkElement;
-    if (favicon) {
-      favicon.href = '/favicon.ico';
+    // Run when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initSafeCustomizations);
+    } else {
+      initSafeCustomizations();
     }
-
-    // You could also organize the menu items here if needed
-    // This would require more advanced customization with plugins
   },
 };

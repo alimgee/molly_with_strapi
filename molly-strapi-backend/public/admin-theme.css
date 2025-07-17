@@ -1,0 +1,425 @@
+/* Molly Rose Foundation - Strapi Admin Theme */
+/* Integrating the foundation's visual identity into the admin panel */
+
+/* Import foundation fonts */
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;400&display=swap');
+
+/* Foundation Brand Colors */
+:root {
+  --molly-rose-primary: #b1225a;
+  --molly-rose-secondary: #034a96;
+  --molly-rose-cream: blanchedalmond;
+  --molly-rose-gold: gold;
+  --molly-rose-dark: #323232;
+  --molly-rose-text: #2c3e50;
+  
+  /* Override Strapi's default theme colors */
+  --primary-100: #fdf2f7;
+  --primary-200: #fce4ef;
+  --primary-500: #b1225a;
+  --primary-600: #9f1f52;
+  --primary-700: #8d1c48;
+  
+  /* Foundation Typography */
+  --font-family-heading: 'Indie Flower', cursive;
+  --font-family-body: 'Roboto Mono', monospace;
+}
+
+/* Global Admin Panel Styling */
+body {
+  background-color: var(--molly-rose-cream) !important;
+  font-family: var(--font-family-body) !important;
+}
+
+/* Header and Navigation */
+[data-strapi-header="true"] {
+  background: linear-gradient(135deg, var(--molly-rose-primary) 0%, #9f1f52 100%) !important;
+  border-bottom: 3px solid var(--molly-rose-secondary) !important;
+  box-shadow: 0 4px 12px rgba(177, 34, 90, 0.15) !important;
+}
+
+/* Navigation Links */
+[data-strapi-header="true"] a,
+[data-strapi-header="true"] button {
+  color: var(--molly-rose-cream) !important;
+  font-family: var(--font-family-heading) !important;
+  font-weight: 600 !important;
+}
+
+[data-strapi-header="true"] a:hover,
+[data-strapi-header="true"] button:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important;
+  color: white !important;
+}
+
+/* Sidebar Navigation */
+[data-strapi-navigation="true"] {
+  background-color: #ffffff !important;
+  border-right: 2px solid #f0f0f0 !important;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Sidebar Links */
+[data-strapi-navigation="true"] a {
+  font-family: var(--font-family-heading) !important;
+  font-weight: 500 !important;
+  border-radius: 8px !important;
+  margin: 2px 8px !important;
+  transition: all 0.3s ease !important;
+}
+
+[data-strapi-navigation="true"] a:hover {
+  background-color: var(--molly-rose-primary) !important;
+  color: white !important;
+  transform: translateX(4px) !important;
+}
+
+[data-strapi-navigation="true"] a[aria-current="page"] {
+  background: linear-gradient(135deg, var(--molly-rose-primary), var(--molly-rose-secondary)) !important;
+  color: white !important;
+  font-weight: bold !important;
+}
+
+/* Content Area */
+[data-strapi-main="true"] {
+  background-color: var(--molly-rose-cream) !important;
+  padding: 24px !important;
+}
+
+/* Page Headers */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-heading) !important;
+  color: var(--molly-rose-primary) !important;
+  font-weight: bold !important;
+}
+
+/* Welcome Messages and Introductions */
+.welcome-message,
+[data-testid="welcome-message"] {
+  background: linear-gradient(135deg, var(--molly-rose-cream) 0%, #f8f4e6 100%) !important;
+  border: 2px solid var(--molly-rose-primary) !important;
+  border-radius: 12px !important;
+  padding: 24px !important;
+  margin-bottom: 24px !important;
+  box-shadow: 0 6px 20px rgba(177, 34, 90, 0.1) !important;
+}
+
+.welcome-message h1,
+.welcome-message h2 {
+  color: var(--molly-rose-primary) !important;
+  margin-bottom: 16px !important;
+}
+
+.welcome-message p {
+  color: var(--molly-rose-secondary) !important;
+  font-family: var(--font-family-body) !important;
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+}
+
+/* Buttons */
+button[type="submit"],
+button[data-testid*="submit"],
+.btn-primary,
+[data-strapi-button="true"] {
+  background: linear-gradient(135deg, var(--molly-rose-primary) 0%, #9f1f52 100%) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  color: white !important;
+  font-family: var(--font-family-heading) !important;
+  font-weight: 600 !important;
+  padding: 12px 24px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 12px rgba(177, 34, 90, 0.2) !important;
+}
+
+button[type="submit"]:hover,
+button[data-testid*="submit"]:hover,
+.btn-primary:hover {
+  background: linear-gradient(135deg, #9f1f52 0%, var(--molly-rose-secondary) 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(177, 34, 90, 0.3) !important;
+}
+
+/* Secondary Buttons */
+.btn-secondary,
+button[data-testid*="cancel"] {
+  background-color: var(--molly-rose-secondary) !important;
+  color: white !important;
+  border: 2px solid var(--molly-rose-secondary) !important;
+  border-radius: 8px !important;
+  font-family: var(--font-family-heading) !important;
+}
+
+.btn-secondary:hover {
+  background-color: transparent !important;
+  color: var(--molly-rose-secondary) !important;
+}
+
+/* Forms and Inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+  border: 2px solid #e1e5e9 !important;
+  border-radius: 8px !important;
+  font-family: var(--font-family-body) !important;
+  padding: 12px 16px !important;
+  transition: all 0.3s ease !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--molly-rose-primary) !important;
+  box-shadow: 0 0 0 3px rgba(177, 34, 90, 0.1) !important;
+  outline: none !important;
+}
+
+/* Content Type Cards */
+.content-type-card,
+[data-testid*="card"] {
+  background: white !important;
+  border: 1px solid #f0f0f0 !important;
+  border-radius: 12px !important;
+  padding: 20px !important;
+  margin-bottom: 16px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+}
+
+.content-type-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 8px 24px rgba(177, 34, 90, 0.15) !important;
+  border-color: var(--molly-rose-primary) !important;
+}
+
+/* Tables */
+table {
+  background-color: white !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+}
+
+table thead {
+  background: linear-gradient(135deg, var(--molly-rose-primary) 0%, #9f1f52 100%) !important;
+}
+
+table thead th {
+  color: white !important;
+  font-family: var(--font-family-heading) !important;
+  font-weight: 600 !important;
+  border: none !important;
+}
+
+table tbody tr:hover {
+  background-color: rgba(177, 34, 90, 0.05) !important;
+}
+
+/* Badges and Labels */
+.badge,
+[data-testid*="badge"] {
+  font-family: var(--font-family-heading) !important;
+  font-weight: 600 !important;
+  border-radius: 6px !important;
+  padding: 6px 12px !important;
+}
+
+.badge-published {
+  background-color: var(--molly-rose-gold) !important;
+  color: var(--molly-rose-dark) !important;
+}
+
+.badge-draft {
+  background-color: var(--molly-rose-secondary) !important;
+  color: white !important;
+}
+
+/* Medical Content Special Styling */
+[data-content-type="cancer-information"],
+[data-content-type="treatment-information"] {
+  border-left: 4px solid var(--molly-rose-gold) !important;
+  background: linear-gradient(135deg, #fff 0%, #fffef7 100%) !important;
+}
+
+[data-content-type="cancer-information"] h3,
+[data-content-type="treatment-information"] h3 {
+  color: var(--molly-rose-secondary) !important;
+}
+
+/* Foundation-specific Content Icons */
+.content-icon {
+  font-size: 24px !important;
+  margin-right: 12px !important;
+}
+
+.content-icon.medical { color: var(--molly-rose-gold) !important; }
+.content-icon.support { color: var(--molly-rose-primary) !important; }
+.content-icon.event { color: var(--molly-rose-secondary) !important; }
+.content-icon.volunteer { color: #28a745 !important; }
+
+/* Alerts and Notifications */
+.alert {
+  border-radius: 12px !important;
+  border: none !important;
+  font-family: var(--font-family-body) !important;
+}
+
+.alert-success {
+  background-color: rgba(40, 167, 69, 0.1) !important;
+  color: #155724 !important;
+  border-left: 4px solid #28a745 !important;
+}
+
+.alert-warning {
+  background-color: rgba(255, 193, 7, 0.1) !important;
+  color: #856404 !important;
+  border-left: 4px solid var(--molly-rose-gold) !important;
+}
+
+.alert-danger {
+  background-color: rgba(220, 53, 69, 0.1) !important;
+  color: #721c24 !important;
+  border-left: 4px solid #dc3545 !important;
+}
+
+/* Logo and Branding Area */
+.admin-logo {
+  max-height: 40px !important;
+  margin-right: 12px !important;
+}
+
+.foundation-branding {
+  display: flex !important;
+  align-items: center !important;
+  font-family: var(--font-family-heading) !important;
+  font-size: 18px !important;
+  font-weight: bold !important;
+  color: white !important;
+}
+
+/* Content Manager Specific Styling */
+.content-manager-header {
+  background: linear-gradient(135deg, var(--molly-rose-cream) 0%, #f8f4e6 100%) !important;
+  border-radius: 12px !important;
+  padding: 24px !important;
+  margin-bottom: 24px !important;
+  border: 2px solid var(--molly-rose-primary) !important;
+}
+
+/* Rich Text Editor */
+.ck-editor {
+  border-radius: 8px !important;
+  border: 2px solid #e1e5e9 !important;
+}
+
+.ck-editor:focus-within {
+  border-color: var(--molly-rose-primary) !important;
+  box-shadow: 0 0 0 3px rgba(177, 34, 90, 0.1) !important;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--molly-rose-cream) !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--molly-rose-primary) !important;
+  border-radius: 4px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9f1f52 !important;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  [data-strapi-main="true"] {
+    padding: 16px !important;
+  }
+  
+  .welcome-message {
+    padding: 16px !important;
+    margin-bottom: 16px !important;
+  }
+  
+  .content-type-card {
+    padding: 16px !important;
+  }
+}
+
+/* Dark Mode Support (if enabled) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --molly-rose-cream: #2d3748;
+    --molly-rose-text: #e2e8f0;
+  }
+  
+  body {
+    background-color: var(--molly-rose-cream) !important;
+    color: var(--molly-rose-text) !important;
+  }
+}
+
+/* Custom Animation for Foundation Branding */
+.foundation-heartbeat {
+  animation: heartbeat 2s ease-in-out infinite both;
+}
+
+@keyframes heartbeat {
+  from {
+    transform: scale(1);
+    transform-origin: center center;
+    animation-timing-function: ease-out;
+  }
+  10% {
+    transform: scale(0.91);
+    animation-timing-function: ease-in;
+  }
+  17% {
+    transform: scale(0.98);
+    animation-timing-function: ease-out;
+  }
+  33% {
+    transform: scale(0.87);
+    animation-timing-function: ease-in;
+  }
+  45% {
+    transform: scale(1);
+    animation-timing-function: ease-out;
+  }
+}
+
+/* Special styling for medical review workflow */
+.medical-review-pending {
+  border-left: 4px solid #ffc107 !important;
+  background-color: rgba(255, 193, 7, 0.05) !important;
+}
+
+.medical-review-approved {
+  border-left: 4px solid #28a745 !important;
+  background-color: rgba(40, 167, 69, 0.05) !important;
+}
+
+/* Foundation mission statement area */
+.mission-statement {
+  background: linear-gradient(135deg, var(--molly-rose-primary) 0%, var(--molly-rose-secondary) 100%) !important;
+  color: white !important;
+  padding: 20px !important;
+  border-radius: 12px !important;
+  margin: 20px 0 !important;
+  text-align: center !important;
+  font-family: var(--font-family-heading) !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 6px 20px rgba(177, 34, 90, 0.2) !important;
+}

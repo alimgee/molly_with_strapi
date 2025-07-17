@@ -9,4 +9,6 @@ export default [
   'strapi::session',
   'strapi::favicon',
   'strapi::public',
+  // Custom middleware for Molly Rose Foundation admin theming
+  'global::admin-theme',
 ];
