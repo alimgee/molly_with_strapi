@@ -12,15 +12,7 @@ export * from './cancer-info';
 import { fetchHomepageBanner, fetchHeroSections, fetchQuotes } from './homepage';
 import { fetchNavigationItems, fetchFooterContent } from './layout';
 import { fetchArticles, fetchArticleById, fetchFirstArticle } from './content';
-import { 
-  fetchCancerInformation, 
-  fetchSupportOrganizations, 
-  fetchCancerSigns, 
-  fetchCancerSymptoms, 
-  fetchCancerTypes, 
-  fetchCharities, 
-  fetchHospitals 
-} from './cancer-info';
+
 
 // Grouped API objects for easier organization
 export const homepageAPI = {
@@ -40,12 +32,4 @@ export const contentAPI = {
   getFirstArticle: fetchFirstArticle,
 };
 
-export const cancerAPI = {
-  getInformation: fetchCancerInformation,
-  getSupportOrgs: fetchSupportOrganizations,
-  getSigns: fetchCancerSigns,
-  getSymptoms: fetchCancerSymptoms,
-  getTypes: fetchCancerTypes,
-  getCharities: fetchCharities,
-  getHospitals: fetchHospitals,
-};
+

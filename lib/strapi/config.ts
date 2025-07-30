@@ -7,7 +7,7 @@ export const DEFAULT_HEADERS = {
 
 export const DEFAULT_OPTIONS = {
   headers: DEFAULT_HEADERS,
-  cache: 'no-store' as RequestCache,
+  //cache: 'no-store' as RequestCache,
 };
 
 // Common fetch wrapper with error handling

@@ -63,3 +63,26 @@ export async function fetchCancerInfoByCategory(category: string): Promise<Cance
     return [];
   }
 }
+
+export async function fetchSupportOrganizations(category?: string) {
+  let endpoint = '/api/support-organizations?filters[isActive][$eq]=true&sort=name:asc';
+  if (category) {
+    endpoint = `/api/support-organizations?filters[isActive][$eq]=true&filters[category][$eq]=${category}&sort=name:asc`;
+  }
+  const data = await strapiRequest<{ data: any[] }>(endpoint);
+  return data?.data || [];
+}
+
+export interface SupportOrg {
+  id: string;
+  name: string;
+  description: string;
+  website?: string;
+  phone?: string;
+  email?: string;
+  logoUrl?: string;
+  category?: string;
+  featured?: boolean;
+  isActive?: boolean;
+}
+
