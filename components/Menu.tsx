@@ -30,7 +30,7 @@ export default function Menu() {
         <Link href="/" className="navbar-brand">
           MollyRose.ie
         </Link>
-        <span className="d-none d-lg-block navbar-text">
+        <span className="d-none d-lg-block navbar-text ml-2">
           Lets talk about Childhood Cancer
         </span>
         

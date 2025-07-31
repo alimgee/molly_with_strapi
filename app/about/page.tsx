@@ -3,7 +3,7 @@ import React from 'react';
 import { Metadata } from 'next';
 import { Container, Row, Col } from 'reactstrap';
 import Intro from '@/app/home/Intro';
-import TwitterContainer from '@/app/about/Twitter';
+
 
 export const metadata: Metadata = {
   title: "About Us - Molly Rose",
@@ -21,10 +21,8 @@ export default function AboutPage() {
                     </Col>
                 </Row>
                 <Row>
-                    <Col md="4" className="text-center">
-                        <TwitterContainer />
-                    </Col>
-                    <Col md="8" className="text-left">
+                    
+                    <Col md="12" className="text-left">
                         <p><span className="first-character">I</span>n 2015 we first walked the halls of St Johns ward for peadiatric cancer and became
                         part of that small group of families who know what it is to try to deal with a
                         childhood cancer diagnosis. We will never forget the bravery of the many children

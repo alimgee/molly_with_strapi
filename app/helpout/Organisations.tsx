@@ -45,8 +45,8 @@ export async function Items() {
                         <div className="card-horizontal">
                             <div className="img-square-wrapper">
                                 <Image 
-                                    src={org.logoUrl || '/images/charities/default.svg'} 
-                                    alt={org.name} 
+                                    src={org.logoUrl ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${org.logoUrl}` : '/images/charities/default.svg'} 
+                                    alt={org.logoAlt || org.name} 
                                     width={48} 
                                     height={48} 
                                     className="" 

@@ -25,7 +25,7 @@ export const Items: React.FC<ItemsProps> = ({ articles }) => {
                             </div>
                             <div className="small text-muted mt-1">{new Date(data.date).toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
                         </div>
-                        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" className="twitter-share-button" data-text="Driving awareness of childhood cancer." data-hashtags="ChildhoodCancer" data-related="mollyrosecancer" data-show-count="false">Tweet</a>
+                        
                     </CardBody>
                 </Card>
             ))}

@@ -38,8 +38,13 @@
     "address": {
       "type": "text"
     },
-    "logoUrl": {
-      "type": "string"
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "isActive": {
       "type": "boolean",

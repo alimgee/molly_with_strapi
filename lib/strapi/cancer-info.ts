@@ -64,15 +64,26 @@ export async function fetchCancerInfoByCategory(category: string): Promise<Cance
   }
 }
 
-export async function fetchSupportOrganizations(category?: string) {
-  let endpoint = '/api/support-organizations?filters[isActive][$eq]=true&sort=name:asc';
-  if (category) {
-    endpoint = `/api/support-organizations?filters[isActive][$eq]=true&filters[category][$eq]=${category}&sort=name:asc`;
-  }
-  const data = await strapiRequest<{ data: any[] }>(endpoint);
-  return data?.data || [];
+
+
+// Type for a single Support Organization from Strapi
+export interface StrapiSupportOrganization {
+  id: number;
+  name: string;
+  description: any; // Rich text
+  website?: string;
+  phone?: string;
+  email?: string;
+  logo?: {
+    url: string;
+    alternativeText?: string;
+  };
+  category?: string;
+  featured?: boolean;
+  isActive?: boolean;
 }
 
+// Type for the transformed Support Organization data
 export interface SupportOrg {
   id: string;
   name: string;
@@ -81,8 +92,66 @@ export interface SupportOrg {
   phone?: string;
   email?: string;
   logoUrl?: string;
+  logoAlt?: string;
   category?: string;
   featured?: boolean;
   isActive?: boolean;
 }
+
+// Transform function for Support Organization data
+export function transformSupportOrganization(
+  item: StrapiSupportOrganization
+): SupportOrg | null {
+  if (!item || !item.name) {
+    console.warn('Skipping invalid support organization item:', item);
+    return null;
+  }
+
+  let descriptionText = '';
+  if (Array.isArray(item.description)) {
+    descriptionText = item.description
+      .map((block: any) => {
+        if (block.type === 'paragraph' && block.children) {
+          return block.children.map((child: any) => child.text || '').join('');
+        }
+        return '';
+      })
+      .filter(Boolean)
+      .join('\n\n');
+  } else if (typeof item.description === 'string') {
+    descriptionText = item.description;
+  }
+
+  return {
+    id: item.id.toString(),
+    name: item.name,
+    description: descriptionText,
+    website: item.website,
+    phone: item.phone,
+    email: item.email,
+    logoUrl: item.logo?.url,
+    logoAlt: item.logo?.alternativeText,
+    category: item.category,
+    featured: item.featured,
+    isActive: item.isActive,
+  };
+}
+
+export async function fetchSupportOrganizations(category?: string): Promise<SupportOrg[]> {
+  let endpoint = '/api/support-organizations?filters[isActive][$eq]=true&sort=name:asc&populate=logo';
+  if (category) {
+    endpoint = `/api/support-organizations?filters[isActive][$eq]=true&filters[category][$eq]=${category}&sort=name:asc&populate=logo`;
+  }
+
+  const response = await strapiRequest<{ data: StrapiSupportOrganization[] }>(endpoint);
+
+  if (response && response.data) {
+    return response.data
+      .map(transformSupportOrganization)
+      .filter((item): item is SupportOrg => item !== null);
+  }
+
+  return [];
+}
+
 
