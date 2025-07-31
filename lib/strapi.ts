@@ -58,7 +58,7 @@ export async function fetchArticles(): Promise<Article[]> {
       headers: {
         'Content-Type': 'application/json',
       },
-      //cache: 'no-store', // Disable caching for now to get fresh data
+      next: { revalidate: 60 },
     });
 
     if (!response.ok) {
@@ -277,7 +277,7 @@ export async function fetchNavigationItems(): Promise<NavigationItem[]> {
       headers: {
         'Content-Type': 'application/json',
       },
-      //cache: 'no-store',
+      next: { revalidate: 60 },
     });
 
     if (!response.ok) {
@@ -305,7 +305,7 @@ export async function fetchFooterContent(): Promise<FooterContent[]> {
       headers: {
         'Content-Type': 'application/json',
       },
-      //cache: 'no-store',
+      next: { revalidate: 60 },
     });
 
     if (!response.ok) {
@@ -333,7 +333,7 @@ export async function fetchHeroContent(): Promise<Hero> {
       headers: {
         'Content-Type': 'application/json',
       },
-      //cache: 'no-store',
+      next: { revalidate: 60 },
     });
 
     if (!response.ok) {
@@ -362,7 +362,7 @@ export async function fetchQuoteContent(): Promise<Quote> {
       headers: {
         'Content-Type': 'application/json',
       },
-      //cache: 'no-store',
+      next: { revalidate: 60 },
     });
 
     if (!response.ok) {
@@ -391,7 +391,7 @@ export async function fetchHomepageBanner(): Promise<HomepageBanner | null> {
       headers: {
         'Content-Type': 'application/json',
       },
-      //cache: 'no-store',
+      next: { revalidate: 60 },
     });
 
     if (!response.ok) {
