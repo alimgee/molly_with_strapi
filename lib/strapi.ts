@@ -2,6 +2,11 @@
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337';
 
+// Helper function to check if a URL is absolute
+function isAbsoluteUrl(url: string): boolean {
+  return url.startsWith('http://') || url.startsWith('https://') || url.startsWith('//');
+}
+
 export interface StrapiArticle {
   id: number;
   documentId: string;
@@ -241,11 +246,11 @@ export function transformStrapiHero(strapiHero: StrapiHero): Hero {
     buttonText: strapiHero.buttonText,
     buttonLink: strapiHero.buttonLink,
     backgroundImage: strapiHero.backgroundImage ? {
-      url: `${STRAPI_URL}${strapiHero.backgroundImage.url}`,
+      url: isAbsoluteUrl(strapiHero.backgroundImage.url) ? strapiHero.backgroundImage.url : `${STRAPI_URL}${strapiHero.backgroundImage.url}`,
       alt: strapiHero.backgroundImage.alternativeText || '',
     } : undefined,
     heroImage: strapiHero.heroImage ? {
-      url: `${STRAPI_URL}${strapiHero.heroImage.url}`,
+      url: isAbsoluteUrl(strapiHero.heroImage.url) ? strapiHero.heroImage.url : `${STRAPI_URL}${strapiHero.heroImage.url}`,
       alt: strapiHero.heroImage.alternativeText || '',
     } : undefined,
   };

@@ -7,6 +7,11 @@ import {
 } from 'reactstrap';
 import Image from 'next/image';
 
+// Helper function to check if a URL is absolute
+function isAbsoluteUrl(url: string): boolean {
+  return url.startsWith('http://') || url.startsWith('https://') || url.startsWith('//');
+}
+
 export async function Items() {
     // Fetch support organizations from Strapi
     const organizations = await fetchSupportOrganizations();
@@ -45,7 +50,7 @@ export async function Items() {
                         <div className="card-horizontal">
                             <div className="img-square-wrapper">
                                 <Image 
-                                    src={org.logoUrl ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${org.logoUrl}` : '/images/charities/default.svg'} 
+                                    src={org.logoUrl ? (isAbsoluteUrl(org.logoUrl) ? org.logoUrl : `${process.env.NEXT_PUBLIC_STRAPI_URL}${org.logoUrl}`) : '/images/charities/default.svg'} 
                                     alt={org.logoAlt || org.name} 
                                     width={48} 
                                     height={48} 

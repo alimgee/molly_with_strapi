@@ -56,20 +56,6 @@ export default {
       
       // Update page title
       document.title = 'Molly Rose Foundation CMS';
-      
-      // Improve navigation text visibility in dark mode
-      const style = document.createElement('style');
-      style.id = 'molly-safe-theme';
-      style.textContent = `
-        /* Improve navigation text visibility */
-        nav *, aside *, [role="navigation"] * {
-          color: #ffffff !important;
-          background-color: rgba(0, 0, 0, 0.8) !important;
-          padding: 2px 4px !important;
-          border-radius: 3px !important;
-        }
-      `;
-      document.head.appendChild(style);
     };
     
     // Run when DOM is ready
