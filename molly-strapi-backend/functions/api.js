@@ -1,21 +1,25 @@
 
-const strapi = require("@strapi/strapi");
+const path = require('path');
+const strapi = require('@strapi/strapi');
 
 let instance;
 
 async function setup() {
   if (!instance) {
+    // Use path.join to ensure the path is correct regardless of the OS
+    const appDir = path.join(__dirname, '..');
     instance = await strapi({
-      appDir: process.cwd(),
-      serveAdminPanel: false,
+      appDir: appDir,
+      serveAdminPanel: false, // We let Netlify handle the admin panel
     }).load();
   }
   return instance;
 }
 
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
   const app = await setup();
 
+  // Remap the Netlify event to a format Strapi's router understands
   const request = {
     method: event.httpMethod,
     url: event.path,
