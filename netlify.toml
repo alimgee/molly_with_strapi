@@ -13,12 +13,23 @@
   to = "/.netlify/functions/api/:splat"
   status = 200
 
+
+# This rule proxies API requests to the serverless function
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/api/:splat"
   status = 200
 
+# This rule rewrites requests for admin assets to the correct path
+[[redirects]]
+  from = "/admin/assets/*"
+  to = "/assets/:splat"
+  status = 200
+
+# This rule handles all other admin panel requests, serving the main index.html
+# It's the standard rule for a Single-Page Application (SPA)
 [[redirects]]
   from = "/admin/*"
   to = "/index.html"
   status = 200
+
