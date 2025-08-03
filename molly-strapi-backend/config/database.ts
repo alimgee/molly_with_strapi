@@ -11,7 +11,8 @@ export default ({ env }) => {
         connection: {
           connectionString: env('DATABASE_URL'),
           ssl: {
-            rejectUnauthorized: false, // Required for Render connections
+            rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', false), // Heroku, Render, etc. require this
+            require: env.bool('DATABASE_SSL_REQUIRE', true), // Supabase requires this
           },
         },
         pool: {
