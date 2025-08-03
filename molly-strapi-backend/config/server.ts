@@ -9,6 +9,6 @@ export default ({ env }) => ({
       secret: env('ADMIN_JWT_SECRET'),
     },
     serveAdminPanel: env.bool('SERVE_ADMIN_PANEL', true),
-    url: env('PUBLIC_ADMIN_URL', '/admin'),
+    url: env('PUBLIC_ADMIN_URL', '/'),
   },
 });
