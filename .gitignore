@@ -56,3 +56,6 @@ coverage/
 
 # ESLint cache
 .eslintcache
+*.dump
+backup.sql
+backup_contents.txt
