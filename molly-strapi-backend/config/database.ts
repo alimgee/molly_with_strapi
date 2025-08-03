@@ -8,13 +8,7 @@ export default ({ env }) => {
     return {
       connection: {
         client: 'postgres',
-        connection: {
-          connectionString: env('DATABASE_URL'),
-          ssl: {
-            rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', false), // Heroku, Render, etc. require this
-            require: env.bool('DATABASE_SSL_REQUIRE', true), // Supabase requires this
-          },
-        },
+        connection: env('DATABASE_URL'),
         pool: {
           min: env.int('DATABASE_POOL_MIN', 2),
           max: env.int('DATABASE_POOL_MAX', 10),
