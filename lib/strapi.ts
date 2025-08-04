@@ -59,7 +59,7 @@ export function transformStrapiArticle(strapiArticle: StrapiArticle): Article {
 // Fetch articles from Strapi
 export async function fetchArticles(): Promise<Article[]> {
   try {
-    const response = await fetch(`${STRAPI_URL}/api/articles?sort=publicationDate:desc`, {
+    const response = await fetch(`${STRAPI_URL}/api/articles?sort=publicationDate:desc&publicationState=live`, {
       headers: {
         'Content-Type': 'application/json',
       },

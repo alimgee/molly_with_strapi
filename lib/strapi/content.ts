@@ -58,7 +58,7 @@ export function transformStrapiArticle(strapiArticle: StrapiArticle): Article {
 // API functions
 export async function fetchArticles(): Promise<Article[]> {
   try {
-    const data = await strapiRequest<{ data: StrapiArticle[] }>('/api/articles?sort=publicationDate:desc');
+    const data = await strapiRequest<{ data: StrapiArticle[] }>('/api/articles?sort=publicationDate:desc&publicationState=live');
     
     if (data?.data) {
       return data.data.map(transformStrapiArticle);
