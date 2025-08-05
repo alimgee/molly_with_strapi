@@ -4,11 +4,4 @@ export default ({ env }) => ({
   app: {
     keys: env.array('APP_KEYS'),
   },
-  webhooks: {
-    populateRelations: env.bool('WEBHOOKS_POPULATE_RELATIONS', false),
-  },
-  // Vercel-specific configurations
-  ...(env('NODE_ENV') === 'production' && {
-    url: env('PUBLIC_URL'), // This should be your Vercel deployment URL
-  }),
 });
