@@ -7,11 +7,13 @@
       "config": {
         "maxLambdaSize": "50mb",
         "includeFiles": [
+          "package.json",
           "dist/**",
           "config/**",
           "database/**",
           "src/**",
-          "public/**"
+          "public/**",
+          ".strapi/**"
         ]
       }
     }
