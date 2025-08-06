@@ -17,7 +17,8 @@ strapi.log
 # Vercel files (if any remain)
 vercel.json
 .vercel/
-api/index.js
+api/
+.env.vercel.example
 
 # VS Code
 .vscode/
